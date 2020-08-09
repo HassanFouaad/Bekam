@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const userRouter = require("./routes/user");
+const userRouter = require("./routes/auth");
 const app = express();
 //Database Connection
 mongoose

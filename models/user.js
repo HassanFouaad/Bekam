@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      unique: "This Email is Taken!"
+      unique: "This Email is Taken!",
     },
     hashed_password: {
       type: String,
@@ -56,6 +56,11 @@ userSchema
   });
 
 userSchema.methods = {
+  authenticate: function (incomingPasswordFromClient) {
+    return (
+      this.encryptPassword(incomingPasswordFromClient) === this.hashed_password
+    );
+  },
   encryptPassword: function (password) {
     if (!password) return "";
     try {
