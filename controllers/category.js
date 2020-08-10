@@ -26,8 +26,10 @@ exports.categoryById = (req, res, next, id) => {
     next();
   });
 };
+/* -------------------------------SHOW All Categories --------------------------- */
 
-/* -------------------------------SHOW Category --------------------------- */
+
+/* -------------------------------SHOW Single Category --------------------------- */
 
 exports.showCategory = (req, res) => {
   const category = req.category;

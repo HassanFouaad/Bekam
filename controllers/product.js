@@ -3,7 +3,7 @@ const formidable = require("formidable");
 const fs = require("fs");
 const _ = require("lodash");
 const { errorHandler } = require("../helpers/dbErrorHandler");
-
+const Category = require("../models/category");
 /* ------------------------------------ Creating Products */
 exports.createProduct = (req, res) => {
   let form = new formidable.IncomingForm();
@@ -46,12 +46,16 @@ exports.createProduct = (req, res) => {
       if (err) {
         return res.status(400).json({ error: errorHandler(err) });
       }
-      res.json({ response });
+      response.photo = undefined;
+      res.json({
+        message: `${response.name} has been created successfully`,
+        response,
+      });
     });
   });
 };
 
-/* Product By Id */
+/* ---------------------------------------------Product By Id */
 exports.productById = (req, res, next, id) => {
   Product.findById(id).exec((err, product) => {
     if (err || !product) {
@@ -64,11 +68,15 @@ exports.productById = (req, res, next, id) => {
   });
 };
 
+/* ---------------------------------------------Product Show*/
+
 exports.showSingleProduct = (req, res) => {
   req.product.photo = undefined;
   const product = req.product;
   return res.json({ product });
 };
+
+/* ---------------------------------------------Product Delete*/
 
 exports.deleteSingleProduct = (req, res) => {
   Product.findByIdAndDelete(req.product._id, (err, product) => {
@@ -78,6 +86,8 @@ exports.deleteSingleProduct = (req, res) => {
     res.status(200).json({ message: "Product has been successfully deleted!" });
   });
 };
+
+/* ---------------------------------------------Product Update*/
 
 exports.updateSingleProduct = (req, res) => {
   let form = new formidable.IncomingForm();
@@ -113,4 +123,47 @@ exports.updateSingleProduct = (req, res) => {
       res.json({ response });
     });
   });
+};
+//****
+//***************
+/* ----------------------------Best Selling and New Arrival --------
+ $By Sell = /product?sortBy=sold&order=desc&limit=4
+ $By Arrival = /product?sortBy=createdAt&order=desc&limit=4
+ $ If no params send , All Products will be Returned  
+//*************** 
+*/
+
+exports.productList = (req, res) => {
+  let order = req.query.order ? req.query.order : "asc";
+  let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+  let limit = req.query.limit ? parseInt(req.query.limit) : 20;
+
+  Product.find()
+    .select("-photo")
+    .populate("category")
+    .sort([[sortBy, order]])
+    .limit(limit)
+    .exec((err, products) => {
+      if (err) {
+        return res.status(404).json({ error: "Products not found" });
+      }
+      res.status(200).json({ products });
+    });
+};
+/* ------------------------- Finding-Porducts based on Category -------- */
+exports.productListRealated = (req, res) => {
+  let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+  Product.find({
+    _id: { $ne: req.product },
+    category: req.product.category,
+  })
+    .select("-photo")
+    .limit(limit)
+    .populate("category", "_id name")
+    .exec((err, products) => {
+      if (err) {
+        return res.status(404).json({ error: "Products not found" });
+      }
+      res.status(200).json({ products });
+    });
 };

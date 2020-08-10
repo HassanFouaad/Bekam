@@ -8,6 +8,8 @@ const {
   showSingleProduct,
   deleteSingleProduct,
   updateSingleProduct,
+  productList,
+  productListRealated,
 } = require("../controllers/product");
 router.param("userId", userById);
 const { productValidator, validate } = require("../validator/product");
@@ -24,6 +26,10 @@ router.post(
 router.get("/product/:productId", showSingleProduct);
 router.delete("/product/:productId", deleteSingleProduct);
 router.put("/product/:productId", updateSingleProduct);
+
+router.get("/products", productList);
+router.get("/products/related/:productId", productListRealated);
+
 router.param("userId", userById);
 router.param("productId", productById);
 module.exports = router;
