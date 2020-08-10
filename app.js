@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+const productRouter = require("./routes/product");
 const categoryRouter = require("./routes/category");
 const app = express();
 //Database Connection
@@ -27,6 +28,7 @@ app.use(cookieParser());
 app.use("/api", userRouter);
 app.use("/api", authRouter);
 app.use("/api", categoryRouter);
+app.use("/api", productRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port, (err, response) => {
