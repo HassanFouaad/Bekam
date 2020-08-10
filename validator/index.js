@@ -2,8 +2,14 @@ const { body, validationResult } = require("express-validator");
 
 const userSignUpValidator = () => {
   return [
-    body("firstname", "First name is required!").notEmpty(),
-    body("lastname", "Last name is required!").notEmpty(),
+    body("firstname", "First name is required!")
+      .notEmpty()
+      .isLength({ min: 2, max: 15 })
+      .withMessage("First Name Should be between 2 to 5 characters"),
+    body("lastname", "Last name is required!")
+      .notEmpty()
+      .isLength({ min: 2, max: 15 })
+      .withMessage("Last Name Should be between 2 to 5 characters"),
     body("email", "Email is required")
       .notEmpty()
       .isEmail()
@@ -25,7 +31,7 @@ const validate = (req, res, next) => {
   if (!result.isEmpty()) {
     // Response will contain something like
     // { errors: [ "body[password]: must be at least 10 chars long" ] }
-    return res.json({ error: result.array()[0] });
+    return res.status(400).json({ error: result.array()[0] });
   }
   return next();
 };

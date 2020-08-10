@@ -4,11 +4,12 @@ const jwt = require("jsonwebtoken"); // to generate signed token
 const expressJwt = require("express-jwt"); //Authorization Cheak
 
 /*---------------------------//Sign Up Controller---------------------------*/
-exports.signUp = (req, res) => {
+exports.signUp = async (req, res) => {
   console.log("Req body: ", req.body);
   const user = new User(req.body);
-  user.save((err, user) => {
+  await user.save((err, user) => {
     if (err) {
+      console.log(err);
       return res.status(400).json({ error: errorHandler(err) });
     }
     user.salt = undefined;
