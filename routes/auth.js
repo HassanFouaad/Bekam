@@ -14,5 +14,6 @@ router.post("/signup", userSignUpValidator(), validate, signUp, signIn);
 router.post("/signin", signIn);
 /* --- SignOut- */
 router.post("/signout", signOut);
-router.get("/users", );
+router.get("/users");
+
 module.exports = router;

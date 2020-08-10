@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const userRouter = require("./routes/auth");
+const authRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
+const categoryRouter = require("./routes/category");
 const app = express();
 //Database Connection
 mongoose
@@ -23,6 +25,8 @@ app.use(cookieParser());
 
 //Routes
 app.use("/api", userRouter);
+app.use("/api", authRouter);
+app.use("/api", categoryRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port, (err, response) => {
