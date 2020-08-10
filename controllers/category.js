@@ -28,6 +28,18 @@ exports.categoryById = (req, res, next, id) => {
 };
 /* -------------------------------SHOW All Categories --------------------------- */
 
+exports.categoryList = (req, res) => {
+  Category.find().exec((err, categories) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Categories not Found!",
+      });
+    }
+    res.status(200).json({
+      categories,
+    });
+  });
+};
 
 /* -------------------------------SHOW Single Category --------------------------- */
 

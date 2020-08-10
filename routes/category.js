@@ -7,6 +7,7 @@ const {
   showCategory,
   deleteCategory,
   updateCategory,
+  categoryList,
 } = require("../controllers/category");
 
 const { requireSignIn, isAdmin, isAuth } = require("../controllers/auth");
@@ -18,6 +19,7 @@ router.post(
   isAdmin,
   createCategory
 );
+router.get("/categories", categoryList);
 router.get("/category/:categoryId", showCategory);
 router.put("/category/:categoryId", updateCategory);
 router.delete("/category/:categoryId", deleteCategory);

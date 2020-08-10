@@ -10,6 +10,9 @@ const {
   updateSingleProduct,
   productList,
   productListRealated,
+  productsCategriesList,
+  listBySearch,
+  productPhoto,
 } = require("../controllers/product");
 router.param("userId", userById);
 const { productValidator, validate } = require("../validator/product");
@@ -29,7 +32,9 @@ router.put("/product/:productId", updateSingleProduct);
 
 router.get("/products", productList);
 router.get("/products/related/:productId", productListRealated);
-
+router.get("/products/categories", productsCategriesList);
+router.post("/products/by/search", listBySearch);
+router.get("/product/photo/:productId", productPhoto);
 router.param("userId", userById);
 router.param("productId", productById);
 module.exports = router;
