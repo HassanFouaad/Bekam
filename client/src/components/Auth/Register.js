@@ -1,51 +1,40 @@
-import React, { Fragment, useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Form, FormGroup, Input } from "reactstrap";
-import {
-  ToastsContainer,
-  ToastsContainerPosition,
-  ToastsStore,
-} from "react-toasts";
-export const Register = () => {
+import { ToastsContainer, ToastsStore } from "react-toasts";
+import { signUp } from "../../operations./operations";
+const Register = ({history}) => {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
     email: "",
     password: "",
     password2: "",
+    sucess: false,
+    error: false,
   });
   const { firstname, lastname, email, password, password2 } = formData;
   const onChange = (e) => {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("NOOOT MATCHED");
       ToastsStore.error("Passwords Don't Match!");
     } else {
-      const newUser = { firstname, lastname, email, password };
-      try {
-        const config = { headers: { "Content-Type": "application/json" } };
-        const body = JSON.stringify(newUser);
-        const res = await axios.post(
-          " http://localhost:8000/api/signup",
-          body,
-          config
-        );
-      } catch (error) {
-        // Error 😨
-        if (error.response) {
-            ToastsStore.error(error.response.data.error)
-          console.log(error.response.data);
+      signUp(firstname, lastname, password, email).then((error) => {
+        if (error) {
+          setFormData({ ...formData, error: true, sucess: false });
+          console.log(error);
+         return ToastsStore.error(error);
+        } else {
+          ToastsStore.success(`Successfully Signed Up, Now you can SignIn`);
+          return history.push("/")
         }
-      }
+      });
     }
   };
-  /* catch (error) {
-        console.log(error.error);
-      } */
+
   return (
     <div>
       <div className="container">
@@ -56,7 +45,6 @@ export const Register = () => {
                 type="text"
                 placeholder="First Name"
                 name="firstname"
-                required
                 value={firstname}
                 onChange={(e) => onChange(e)}
               ></Input>
@@ -66,7 +54,6 @@ export const Register = () => {
                 type="text"
                 placeholder="Last Name"
                 name="lastname"
-                required
                 value={lastname}
                 onChange={(e) => onChange(e)}
               ></Input>
@@ -76,7 +63,6 @@ export const Register = () => {
                 type="email"
                 placeholder="Email"
                 name="email"
-                required
                 value={email}
                 onChange={(e) => onChange(e)}
               ></Input>
@@ -86,17 +72,15 @@ export const Register = () => {
                 type="password"
                 placeholder="Password"
                 name="password"
-                required
                 value={password}
                 onChange={(e) => onChange(e)}
               ></Input>
-            </FormGroup>{" "}
+            </FormGroup>
             <FormGroup className="col-sm">
               <Input
                 type="password"
                 placeholder="Confirm Password"
                 name="password2"
-                required
                 value={password2}
                 onChange={(e) => onChange(e)}
               ></Input>
@@ -106,12 +90,10 @@ export const Register = () => {
             </FormGroup>
           </Form>
         </div>
-        <ToastsContainer
-          className="toastcontainer"
-          position={ToastsContainerPosition.TOP_RIGHT}
-          store={ToastsStore}
-        />
       </div>
+      <ToastsContainer store={ToastsStore}></ToastsContainer>
     </div>
   );
 };
+
+export default Register;

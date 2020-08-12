@@ -1,0 +1,40 @@
+#header-wrapper {
+  width: 100vw;
+  height: 80px;
+  background-color: navy;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+#toggle {
+  cursor: pointer;
+  color: #f48176;
+  font-size: 30px;
+  margin-left: 0px;
+  background: transparent;
+  border: none;
+}
+
+.sidebar {
+  height: 100vh;
+  padding-left: 20px;
+  background-color: #024763;
+  opacity: 0.8;
+  color: white;
+  width: 400px;
+  position: fixed;
+  z-index: 200;
+  left: -100%;
+  animation: slide-open 0.5s forwards;
+}
+.sidebar.close {
+  left: -100%;
+}
+
+@keyframes slide-open {
+  100% {
+    left: 0;
+  }
+}

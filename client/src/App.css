@@ -12,21 +12,36 @@ body {
 
   height: 100vh;
 }
-.toastcontainer{
-    height: 50px;
+.toastcontainer {
+  height: 50px;
 }
-#navbar {
-  background: #59d3e6;
-}
+.navbar {
+  background: #024763;
 
+}
+#dropdown {
+  background: #86e3f1;
+}
 .nav-link {
   color: white;
   font-weight: 500;
+  font-size: 18px;
+  margin-left: 20px;
 }
-
+@media screen and (max-width: 700px) {
+  .nav-link {
+    margin-left: 40%;
+  }
+  .nav-item{
+    
+  }
+}
 .nav-link:hover {
   color: #2d98a8;
 }
 #regform {
-  margin-top: 20%;
+  margin-top: 15%;
+}
+.toaster {
+  height: 50px;
 }
