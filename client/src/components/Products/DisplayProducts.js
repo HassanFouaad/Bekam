@@ -67,7 +67,7 @@ export const DisplayProducts = () => {
         />
       )}
       <Row className="row justify-content-center">
-        <h2 id="h2" className="col-4 text-center">
+        <h2 id="h2" className="col-md-4 text-center">
           Best Sellers!
         </h2>
       </Row>
@@ -75,6 +75,7 @@ export const DisplayProducts = () => {
         <div className="col-sm-3">
           <Carousel showArrows={true} autoPlay>
             {productsBySold.map((p, i) => (
+              
               <Fragment>
                 <ProductCardBySold key={i} product={p}></ProductCardBySold>
               </Fragment>
@@ -93,7 +94,7 @@ export const DisplayProducts = () => {
         />
       )}
       <Row className="row justify-content-center">
-        <h2 id="h2" className="col-4 text-center">
+        <h2 id="h2" className="col-md-4 text-center">
           New Arrival
         </h2>
       </Row>

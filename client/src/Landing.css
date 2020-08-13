@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Lemonada&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rowdies&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
 body {
   background-image: url("./img/land.jpg");
   background-size: cover;
@@ -6,4 +10,41 @@ body {
   background-image: url(./img/jumbo.jpg);
   background-size: cover;
   height: 100vh;
+}
+#catch {
+  font-family: "Luckiest Guy";
+  font-size: 100px;
+}
+#h22 {
+  font-size: 50px;
+  font-weight: 700;
+  color: #024763;
+  font-family: "Josefin Sans";
+  letter-spacing: 1px;
+}
+
+#btns {
+  font-size: 30px;
+  margin: 5px;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: #e67267;
+  border: 0px;
+  font-family: "Josefin Sans";
+  font-weight: 100;
+}
+@media screen and (max-width: 700px) {
+  #catch {
+    font-family: "Luckiest Guy";
+    font-size: 50px;
+  }
+  #btns {
+    font-size: 20px;
+  }
+  #h22 {
+    margin-top: 20px;
+    font-size: 24px;
+    position: relative;
+  }
 }

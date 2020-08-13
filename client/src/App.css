@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -10,7 +11,7 @@ body {
   height: 50px;
 }
 .navbar {
-  background: #024763;
+  background: #033244;
 }
 #dropdown {
   background: #86e3f1;
