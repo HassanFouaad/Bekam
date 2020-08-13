@@ -1,25 +1,36 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { getCats } from "../../operations./catOperations";
-import { ProductCardByArrival } from "../Products/productCardByArrival";
-import { Button } from "reactstrap";
+import { ProductCardByFilter } from "../Products/ProductCardByFilter";
 import "semantic-ui-css/semantic.min.css";
-
-export const Shop = ({ clicked }) => {
-  const [cats, setCats] = useState([]);
-  const init = () => {
-    getCats()
-      .then((response) => {
-        setCats(response.data);
-      })
-      .catch((error) => {});
-  };
-  useEffect(() => {
-    init();
-  }, []);
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "reactstrap";
+export const Shop = ({ filtered, clicked }) => {
   return (
     <Fragment>
-      <div style={{ height: "100vh" }}></div>
+      <div style={{ minHeight: "100vh" }} className="container">
+        <div className="row">
+          <Button
+            onClick={clicked}
+            style={{
+              background: "#033244",
+              border: "0px",
+              marginLeft: "30px",
+    
+            }}
+          >
+            <FontAwesomeIcon icon={faBars} size="2x"></FontAwesomeIcon>
+            <h2>Filter</h2>
+          </Button>
+        </div>
+        <div className="row justify-content-center">
+          {filtered.map((product, i) => (
+            <ProductCardByFilter
+              key={i}
+              product={product}
+            ></ProductCardByFilter>
+          ))}
+        </div>
+      </div>
     </Fragment>
   );
 };

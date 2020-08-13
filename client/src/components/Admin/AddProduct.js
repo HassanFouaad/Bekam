@@ -82,7 +82,6 @@ const AddProduct = () => {
           ToastsStore.success("The product has been created successfully");
           setValues({ ...values, error: response, loading: "false" });
         } else {
-          setValues({ ...values, name: "" });
         }
       })
       .catch((error) => {

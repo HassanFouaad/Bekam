@@ -20,6 +20,7 @@ mongoose
   })
   .then(() => console.log("Database Connected"));
 //MiddleWares
+app.disable('etag')
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());

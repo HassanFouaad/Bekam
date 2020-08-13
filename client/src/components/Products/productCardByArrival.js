@@ -14,7 +14,7 @@ import { API } from "../../config";
 export const ProductCardByArrival = ({ product }) => {
   return (
     <Fragment>
-      <Card className="col-sm-3 m-2 p-0" id="productcard">
+      <Card className="col-sm-3 m-2 mr-5 p-0" id="productcard">
         <CardTitle id="titlet" className="text-center">
           <span className="p-2">{product.name}</span>
         </CardTitle>

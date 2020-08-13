@@ -151,7 +151,7 @@ exports.productList = (req, res) => {
       if (err) {
         return res.status(404).json({ error: "Products not found" });
       }
-      res.status(200).json({products});
+      res.status(200).json(products);
     });
 };
 
@@ -229,9 +229,12 @@ exports.listBySearch = (req, res) => {
     .limit(limit)
     .exec((err, data) => {
       if (err) {
-        return res.status(400).json({
-          error: "Products not found",
-        });
+        return (
+          res.status(400).json({
+            error: "Products not found",
+          }),
+          res.header("Cache-Control", "no-cache, no-store, must-revalidate")
+        );
       }
       res.json({
         size: data.length,
