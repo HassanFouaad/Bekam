@@ -10,6 +10,7 @@ exports.createProduct = (req, res) => {
   form.keepExtensions = true;
   form.parse(req, (err, fields, files) => {
     if (err) {
+      console.log(err);
       return res.status(400).json({ error: "Image couldn't be Uploaded" });
     }
     //Cheaking all files
@@ -22,9 +23,11 @@ exports.createProduct = (req, res) => {
       !category ||
       !shipping
     ) {
+      console.log(fields);
       return res
         .status(400)
         .json({ error: "Please compelete all product fields" });
+      console.log(fields);
     }
     let newProduct = new Product(fields);
     if (files.photo) {
@@ -44,6 +47,7 @@ exports.createProduct = (req, res) => {
     }
     newProduct.save((err, response) => {
       if (err) {
+        console.log(err);
         return res.status(400).json({ error: errorHandler(err) });
       }
       response.photo = undefined;
@@ -147,7 +151,7 @@ exports.productList = (req, res) => {
       if (err) {
         return res.status(404).json({ error: "Products not found" });
       }
-      res.status(200).json({ products });
+      res.status(200).json({products});
     });
 };
 

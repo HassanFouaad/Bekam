@@ -13,7 +13,7 @@ router.post("/signup", userSignUpValidator(), validate, signUp, signIn);
 /* --- SignIn-- */
 router.post("/signin", signIn);
 /* --- SignOut- */
-router.post("/signout", signOut);
+router.get("/signout", signOut);
 router.get("/users");
 
 module.exports = router;

@@ -1,0 +1,55 @@
+#productcard {
+  transition: transform 0.3s; /* Animation */
+}
+#productcard:hover {
+  transform: scale(1.08);
+}
+#btn {
+  background-color: #f48176;
+  transition: transform 0.2s;
+  border: 0px;
+}
+#h2 {
+  font-size: 50px;
+  text-align: center;
+  background-color: #5fcbbe;
+  margin-top: 10px;
+  color: white;
+  padding: 20px;
+  border-radius: 50px;
+}
+#btn:hover {
+  transform: scale(1.2);
+}
+
+#title {
+  text-decoration: none;
+}
+.product-price {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 2px;
+  color: #f48176;
+}
+#titlet {
+  background-color: #024763;
+  position: relative;
+  padding: 5px;
+  padding-left: 1px;
+  padding-right: 2px;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 0px;
+  color: white;
+  margin-bottom: 0;
+}
+.desc {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+.imog {
+  max-height: 250px;
+  min-height: 250px;
+}

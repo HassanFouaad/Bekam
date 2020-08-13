@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../../operations./operations";
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const AdminRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
@@ -16,4 +16,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   ></Route>
 );
 
-export default PrivateRoute;
+export default AdminRoute;

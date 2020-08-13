@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Input } from "reactstrap";
 import { ToastsContainer, ToastsStore } from "react-toasts";
 import { signUp } from "../../operations./operations";
-const Register = ({history}) => {
+const Register = ({ history }) => {
+  useEffect(() => {
+    document.title = "Bekam - Sign Up";
+  }, []);
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -26,10 +29,10 @@ const Register = ({history}) => {
         if (error) {
           setFormData({ ...formData, error: true, sucess: false });
           console.log(error);
-         return ToastsStore.error(error);
+          return ToastsStore.error(error);
         } else {
           ToastsStore.success(`Successfully Signed Up, Now you can SignIn`);
-          return history.push("/")
+          return history.push("/");
         }
       });
     }

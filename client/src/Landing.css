@@ -1,0 +1,9 @@
+body {
+  background-image: url("./img/land.jpg");
+  background-size: cover;
+}
+#jumbo {
+  background-image: url(./img/jumbo.jpg);
+  background-size: cover;
+  height: 100vh;
+}

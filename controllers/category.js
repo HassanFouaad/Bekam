@@ -5,9 +5,11 @@ const { errorHandler } = require("../helpers/dbErrorHandler");
 
 exports.createCategory = (req, res) => {
   const newCategory = new Category(req.body);
+  console.log(req.body);
   newCategory.save((err, data) => {
     if (err || !newCategory) {
-      return res.status(404).json({ error: errorHandler });
+      console.log(err);
+      return res.status(500).json({ error: errorHandler });
     }
     res.json({ data });
   });
@@ -35,9 +37,7 @@ exports.categoryList = (req, res) => {
         error: "Categories not Found!",
       });
     }
-    res.status(200).json({
-      categories,
-    });
+    res.status(200).json(categories);
   });
 };
 
@@ -45,7 +45,7 @@ exports.categoryList = (req, res) => {
 
 exports.showCategory = (req, res) => {
   const category = req.category;
-  return res.json({ category });
+  return res.json(category);
 };
 
 /* -------------------------------Delete Category --------------------------- */

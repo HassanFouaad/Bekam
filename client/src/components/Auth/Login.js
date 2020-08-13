@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Input } from "reactstrap";
-import { ToastsContainer, ToastsStore, ToastsContainerPosition } from "react-toasts";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition,
+} from "react-toasts";
 import { signIn } from "../../operations./operations";
 
 export const Login = ({ history }) => {
+  useEffect(() => {
+    document.title = "Bekam - Login";
+  }, []);
   const [form, setForm] = useState({ email: "", password: "" });
   const { email, password } = form;
 
@@ -53,7 +60,12 @@ export const Login = ({ history }) => {
         </div>
       </div>
 
-      <ToastsContainer store={ToastsStore} id="sb7" className="toaster" position={ToastsContainerPosition.TOP_LEFT}/>
+      <ToastsContainer
+        store={ToastsStore}
+        id="sb7"
+        className="toaster"
+        position={ToastsContainerPosition.TOP_LEFT}
+      />
     </div>
   );
 };

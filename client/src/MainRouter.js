@@ -9,7 +9,8 @@ import AdminRoute from "./components/Auth/AdminRoutte";
 import UserDashboard from "./components/USERS/UserDashboard";
 import AdminDashboard from "./components/Admin/AdminDash";
 import Layouts from "./Layout";
-
+import AddCategory from "./components/Admin/AddCategory";
+import AddProduct from "./components/Admin/AddProduct";
 
 export default class MainRouter extends Component {
   render() {
@@ -31,6 +32,16 @@ export default class MainRouter extends Component {
               exact
               path="/admin/dashboard"
               component={AdminDashboard}
+            ></AdminRoute>
+            <AdminRoute
+              exact
+              path="/create/category"
+              component={AddCategory}
+            ></AdminRoute>
+            <AdminRoute
+              exact
+              path="/create/product"
+              component={AddProduct}
             ></AdminRoute>
           </Switch>
         </BrowserRouter>

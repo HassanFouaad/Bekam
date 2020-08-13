@@ -1,16 +1,18 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { isAuthenticated } from "../../operations./operations";
-import { Container } from "reactstrap";
+
 import "./dash.css";
 import { Link } from "react-router-dom";
 const UserDashboard = () => {
   const {
     user: { firstname, lastname, email, role },
   } = isAuthenticated();
-
+  useEffect(() => {
+    document.title = `${JSON.stringify(isAuthenticated().user.firstname)} -  Dashboard`;
+  }, []);
   const userLinks = () => {
     return (
-      <div className="bg-light text-center" style={{height:"100%"}}>
+      <div className="bg-light text-center" style={{ height: "100%" }}>
         <h4
           className="card-header"
           style={{ background: "#F48176", color: "white" }}
@@ -74,7 +76,7 @@ const UserDashboard = () => {
   };
   return (
     <Fragment>
-      <div className="d-flex">
+      <div className="d-flex" title="User Dashboard">
         <div>{userLinks()}</div>
 
         <div className="container-fluid">

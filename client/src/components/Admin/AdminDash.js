@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { isAuthenticated } from "../../operations./operations";
 import "../USERS/dash.css";
 import { Link } from "react-router-dom";
@@ -6,7 +6,9 @@ const AdminDashboard = () => {
   const {
     user: { firstname, lastname, email, role },
   } = isAuthenticated();
-
+  useEffect(() => {
+    document.title = `${JSON.stringify(firstname)} -  Dashboard`;
+  }, []);
   const AdminLinks = () => {
     return (
       <div className="bg-light text-center" style={{ height: "100%" }}>
@@ -59,7 +61,7 @@ const AdminDashboard = () => {
   return (
     <Fragment>
       <div className="d-flex">
-        <div>{AdminLinks()}</div>
+        <div style={{ width: "250px" }}>{AdminLinks()}</div>
 
         <div className="container-fluid">{AdminInfo()}</div>
       </div>

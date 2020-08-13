@@ -44,8 +44,10 @@ exports.signIn = (req, res) => {
       const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
       //Presisting the Tea Token with Expiry Date
       res.cookie("Tea", token, { expire: new Date() + 9999 });
-      const { _id, email, name, role } = user;
-      res.status(200).json({ token, user: { _id, email, name, role } });
+      const { _id, email, firstname, lastname, role } = user;
+      res
+        .status(200)
+        .json({ token, user: { _id, email, firstname, lastname, role } });
     }
   });
 };

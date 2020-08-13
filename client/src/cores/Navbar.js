@@ -100,12 +100,21 @@ const NavbarComponent = ({ history }) => {
                         <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                       </DropdownToggle>
                       <DropdownMenu style={{ backgroundColor: "#F48176" }}>
-                        <DropdownItem
-                          tag="a"
-                          href="/dashboard"
-                          style={{ color: "black", fontWeight: "700" }}
-                        >
-                          Dashboard
+                        <DropdownItem>
+                          <Link
+                            style={{
+                              color: "black",
+                              fontWeight: "700",
+                              textDecoration: "none",
+                            }}
+                            to={
+                              isAuthenticated().user.role === 1
+                                ? "/admin/dashboard"
+                                : "/user/dashboard"
+                            }
+                          >
+                            Dashboard
+                          </Link>
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
