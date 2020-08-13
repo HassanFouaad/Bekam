@@ -3,8 +3,9 @@
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
 body {
-  background-image: url("./img/land.jpg");
   background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
 }
 #jumbo {
   background-image: url(./img/jumbo.jpg);
@@ -32,7 +33,8 @@ body {
   background-color: #e67267;
   border: 0px;
   font-family: "Josefin Sans";
-  font-weight: 100;
+  font-weight: 900;
+  color: #033244;
 }
 @media screen and (max-width: 700px) {
   #catch {

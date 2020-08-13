@@ -8,6 +8,7 @@ import Loader from "react-loader-spinner";
 import { Row } from "reactstrap";
 import "./product.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Link } from "react-router-dom";
 
 export const DisplayProducts = () => {
   const [productsBySold, setProductsBySold] = useState([]);
@@ -67,15 +68,18 @@ export const DisplayProducts = () => {
         />
       )}
       <Row className="row justify-content-center">
-        <h2 id="h2" className="col-md-4 text-center">
-          Best Sellers!
-        </h2>
+        <Link
+          to="/bestseller"
+          className="col-md-4 text-center"
+          style={{ textDecoration: "none" }}
+        >
+          <h2 id="h2">Best Sellers!</h2>
+        </Link>
       </Row>
       <Row className="row justify-content-center">
-        <div className="col-sm-3">
+        <div className="col-md-4 mt-5 col-sm-4">
           <Carousel showArrows={true} autoPlay>
             {productsBySold.map((p, i) => (
-              
               <Fragment>
                 <ProductCardBySold key={i} product={p}></ProductCardBySold>
               </Fragment>
@@ -94,11 +98,15 @@ export const DisplayProducts = () => {
         />
       )}
       <Row className="row justify-content-center">
-        <h2 id="h2" className="col-md-4 text-center">
-          New Arrival
-        </h2>
+        <Link
+          to="/newarrival"
+          className="col-md-4 text-center"
+          style={{ textDecoration: "none" }}
+        >
+          <h2 id="h2">New Arrival</h2>
+        </Link>
       </Row>
-      <Row className="row justify-content-center">
+      <Row className="row justify-content-center mt-5">
         {productsByArrival.map((p, i) => (
           <ProductCardByArrival
             key={i}

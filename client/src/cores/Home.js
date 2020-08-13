@@ -1,10 +1,7 @@
 import React from "react";
-import { DisplayProducts } from "../components/Products/DisplayProducts";
+import { Shop } from "../components/Shop/Shop";
+import Sidebars from "../components/SideBar/Sidebar";
 
 export default function Home() {
-  return (
-    <div className="d-flex">
-      <div className="container-fluid"><DisplayProducts></DisplayProducts></div>
-    </div>
-  );
+  return <Sidebars></Sidebars>;
 }

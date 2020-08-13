@@ -12,6 +12,7 @@ const userSignUpValidator = () => {
       .withMessage("Last Name Should be between 2 to 5 characters"),
     body("email", "Email is required")
       .notEmpty()
+      .withMessage("Please Enter your Email")
       .isEmail()
       .withMessage("Please Enter a valid Email Address"),
     body("password", "Password is required").notEmpty(),
@@ -20,6 +21,18 @@ const userSignUpValidator = () => {
       .withMessage("Password must contain at least 6 characters")
       .matches(/\d/)
       .withMessage("Password must contain a number"),
+  ];
+};
+const userSigninValidator = () => {
+  return [
+    body("email", "Email is required")
+      .notEmpty()
+      .withMessage("Please Enter your Email")
+      .isEmail()
+      .withMessage("Please Enter a valid Email Address"),
+    body("password", "Password is required")
+      .notEmpty()
+      .withMessage("Please Enter Password"),
   ];
 };
 const validate = (req, res, next) => {
@@ -37,5 +50,6 @@ const validate = (req, res, next) => {
 };
 module.exports = {
   userSignUpValidator,
+  userSigninValidator,
   validate,
 };

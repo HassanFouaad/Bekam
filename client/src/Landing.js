@@ -24,7 +24,7 @@ export default class Landing extends Component {
                   <ButtonGroup className="row">
                     <Link to="/register">
                       <Button id="btns" className="">
-                        Join Us
+                        Join
                       </Button>
                     </Link>
                     <Link to="/login">
