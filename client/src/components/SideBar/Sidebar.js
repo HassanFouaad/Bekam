@@ -6,7 +6,7 @@ import { Button, Label, Input } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { prices } from "../../cores/shared/fixedPrices";
-
+import "./sidebar.css";
 const Sidebars = () => {
   ////*** SideBAR HANDLERS */
   ////*** SideBAR HANDLERS */
@@ -20,6 +20,7 @@ const Sidebars = () => {
   const [cats, setCats] = useState([]);
   const [limit, setLimit] = useState(6);
   const [skip, setSkip] = useState(0);
+  const [size, setSize] = useState(0);
   const [finalResult, setFinalResut] = useState([]);
 
   const init = () => {
@@ -33,13 +34,40 @@ const Sidebars = () => {
     init();
     LoadFilteredResult(skip, limit, myFilters.filters);
   }, []);
+
   const LoadFilteredResult = (newFilters) => {
     filteredProduct(skip, limit, newFilters)
       .then((data) => {
         console.log(data);
-        setFinalResut(data);
+        setFinalResut(data.data);
+        setSize(data.size);
+        console.log(data.size);
+        setSkip(0);
       })
       .catch((error) => console.log(error));
+  };
+
+  //////LOAD MORE HANDLER /////////////
+  const loadMore = () => {
+    let toSkip = skip + limit;
+    filteredProduct(toSkip, limit, myFilters.filters)
+      .then((data) => {
+        console.log(data);
+        setFinalResut([...finalResult, ...data.data]);
+        setSize(data.size);
+        setSkip(toSkip);
+      })
+      .catch((error) => console.log(error));
+  };
+  const loadMoreButton = () => {
+    return (
+      size > 0 &&
+      size >= limit && (
+        <Button onClick={loadMore} className="mt-5" id="loadbtn">
+          Load More
+        </Button>
+      )
+    );
   };
   ////*** Filter  Handler */
   ////*** Filter  Handler */
@@ -91,17 +119,19 @@ const Sidebars = () => {
         array = data[key].array;
       }
     }
+
     return array;
   };
   //////////////////////////////
-
+  {
+  }
   return (
     <Fragment>
-      <Sidebar.Pushable as={Segment}>
+      <Sidebar.Pushable as={Segment} className="mt-0">
         <Sidebar
           as={Menu}
           animation="overlay"
-          style={{ background: "#033244" }}
+          style={{ background: "black" }}
           icon="labeled"
           inverted
           onHide={() => setVisible(false)}
@@ -111,11 +141,11 @@ const Sidebars = () => {
         >
           <Button
             onClick={toggleVis}
-            style={{ background: "#033244", border: "0px" }}
+            style={{ color: "#FEEE00", background: "black", border: "0px" }}
           >
             <FontAwesomeIcon icon={faBars} size="2x"></FontAwesomeIcon>
           </Button>
-          <Menu.Item>Categories</Menu.Item>
+          <Menu.Item style={{ fontWeight: "700" }}>Categories</Menu.Item>
           {cats.map((c, i) => (
             <Menu.Item key={i} className="text-left pl-5 text-sm-left">
               <input
@@ -126,27 +156,30 @@ const Sidebars = () => {
               />
               <label
                 className="form-check-label"
-                style={{ color: "#F48176", fontWeight: "700" }}
+                style={{ color: "#FEEE00", fontWeight: "700" }}
               >
                 {c.name}
               </label>
             </Menu.Item>
           ))}
-          <Menu.Item>Price Filter</Menu.Item>
+          <Menu.Item style={{ fontWeight: "700" }}>Price Filter</Menu.Item>
           {prices.map((p, i) => (
             <Menu.Item key={i} className="text-left pl-5 text-sm-left">
               <Input
                 id="radio"
                 type="radio"
                 name={p}
-                onChange={handlePriceChange}
+                onChange={(e) => {
+                  handlePriceChange(e);
+                  toggleVis();
+                }}
                 value={`${p._id}`}
                 className="form-check-input"
               ></Input>
               <Label
                 for="radio"
                 className="form-check-label mr-5"
-                style={{ color: "#F48176", fontWeight: "700" }}
+                style={{ color: "#FEEE00", fontWeight: "700" }}
               >
                 {p.name}
               </Label>
@@ -156,6 +189,7 @@ const Sidebars = () => {
         <Sidebar.Pusher dimmed={visible}>
           <Segment basic className="container">
             <Shop
+              loadMore={loadMoreButton}
               clicked={toggleVis}
               cats={cats}
               myFilters={myFilters}

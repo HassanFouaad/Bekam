@@ -7,7 +7,6 @@ import {
   Button,
   CardTitle,
   CardImg,
-  CardImgOverlay,
 } from "reactstrap";
 import "./product.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -16,10 +15,10 @@ import { API } from "../../config";
 export const ProductCardBySold = ({ product }) => {
   return (
     <Fragment>
-      <Card className="m-2 p-0" id="productcard">
+      <Card className="m-2 p-0" id="productcard" style={{border:"100px"}}>
         <Link style={{ textDecoration: "none" }}>
           <CardTitle
-            style={{ color: "#024763", fontWeight: "600", fontSize: "20px" }}
+            style={{ color: "black", fontWeight: "600", fontSize: "20px" }}
           >
             <p>{product.name}</p>
           </CardTitle>
@@ -30,7 +29,7 @@ export const ProductCardBySold = ({ product }) => {
           ></CardImg>
         </Link>
         <Link to="/" id="title"></Link>
-        <CardBody style={{ background: "#024763", color: "white" }}>
+        <CardBody style={{ background: "#FEEE00", color: "white" }}>
           <div className="text-center">
             <CardSubtitle className="text-center">
               <span className="product-price">{product.price} L.E</span>

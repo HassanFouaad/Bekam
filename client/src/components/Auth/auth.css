@@ -1,0 +1,11 @@
+#regform {
+  background-color: #feee00;
+  padding: 5%;
+  margin-top: 150px;
+  border: 10px solid black;
+}
+
+#subbtn {
+  background-color: black;
+  width: 100%;
+}

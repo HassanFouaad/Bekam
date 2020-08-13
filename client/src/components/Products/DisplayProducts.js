@@ -9,7 +9,8 @@ import { Row } from "reactstrap";
 import "./product.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Link } from "react-router-dom";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 export const DisplayProducts = () => {
   const [productsBySold, setProductsBySold] = useState([]);
   const [productsByArrival, setProductsByArrival] = useState([]);
@@ -17,6 +18,8 @@ export const DisplayProducts = () => {
   useEffect(() => {
     loadByArrival();
     loadBySold();
+    AOS.init({ easing: "ease-in-out-back" });
+    AOS.refresh();
   }, []);
   const loadBySold = () => {
     setLoading(true);
@@ -69,6 +72,7 @@ export const DisplayProducts = () => {
       )}
       <Row className="row justify-content-center">
         <Link
+          data-aos="fade-up"
           to="/bestseller"
           className="col-md-4 text-center"
           style={{ textDecoration: "none" }}
@@ -76,7 +80,7 @@ export const DisplayProducts = () => {
           <h2 id="h2">Best Sellers!</h2>
         </Link>
       </Row>
-      <Row className="row justify-content-center">
+      <Row className="row justify-content-center" data-aos="fade-up">
         <div className="col-md-4 mt-5 col-sm-4">
           <Carousel showArrows={true} autoPlay>
             {productsBySold.map((p, i) => (
@@ -99,6 +103,7 @@ export const DisplayProducts = () => {
       )}
       <Row className="row justify-content-center">
         <Link
+          data-aos="fade-up"
           to="/newarrival"
           className="col-md-4 text-center"
           style={{ textDecoration: "none" }}
@@ -106,12 +111,11 @@ export const DisplayProducts = () => {
           <h2 id="h2">New Arrival</h2>
         </Link>
       </Row>
-      <Row className="row justify-content-center mt-5">
+      <Row className="row justify-content-center text-center mt-5">
         {productsByArrival.map((p, i) => (
           <ProductCardByArrival
             key={i}
             product={p}
-            className="col-sm-3"
           ></ProductCardByArrival>
         ))}
       </Row>

@@ -11,16 +11,23 @@ import {
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
+  Dropdown,
 } from "reactstrap";
-import { faBars, faHome, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faHome,
+  faUser,
+  faUserPlus,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, withRouter } from "react-router-dom";
 import { signOut, isAuthenticated } from "../operations./operations";
 import logo from "../img/logo.png";
-
+import { Login } from "../components/Auth/Login";
 const isActive = (history, path) => {
   if (history.location.pathname === path) {
-    return { color: "#F48176" };
+    return { color: "#feee00" };
   }
 };
 const NavbarComponent = ({ history }) => {
@@ -33,20 +40,22 @@ const NavbarComponent = ({ history }) => {
 
   return (
     <Fragment>
-      <Navbar className="Navbar" id="navbar" expand="md" className="">
-        <NavbarBrand></NavbarBrand>
-
-        <NavbarBrand className="navbar-brand ml-2" href="/">
-          <img
-            className="img img-responsive"
-            style={{ height: "50px", padding: "0px" }}
-            src={logo}
-          ></img>
-        </NavbarBrand>
-        <NavbarToggler expand="sm" onClick={toggleNav} className="ml-auto">
-          <FontAwesomeIcon icon={faBars} size="lg" color="#F48176" />
-        </NavbarToggler>
+      <Navbar className="" id="navbar" expand="md" fixed="top">
         <Container>
+          <NavbarBrand className="navbar-brand ml-2" href="/">
+            <img
+              className="img img-responsive"
+              style={{ height: "50px", padding: "0px" }}
+              src={logo}
+            ></img>
+          </NavbarBrand>
+          <NavbarBrand className="ml-auto">
+            <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
+          </NavbarBrand>
+          <NavbarToggler expand="sm" onClick={toggleNav} className="ml-auto">
+            <FontAwesomeIcon icon={faBars} size="lg" color="#feee00" />
+          </NavbarToggler>
+
           <Collapse navbar isOpen={isOpen}>
             <Nav navbar className="ml-auto">
               <NavItem>
@@ -56,10 +65,10 @@ const NavbarComponent = ({ history }) => {
                   to="/home"
                 >
                   <FontAwesomeIcon
-                    className="mr-1"
+                    className="mr-2"
                     icon={faHome}
                     size="lg"
-                    color="#F48176"
+                    color="#feee00"
                   />
                   <span>Home</span>
                 </Link>
@@ -72,6 +81,12 @@ const NavbarComponent = ({ history }) => {
                       to="/register"
                       style={isActive(history, "/register")}
                     >
+                      <FontAwesomeIcon
+                        className="mr-2"
+                        icon={faUserPlus}
+                        size="lg"
+                        color="#feee00"
+                      />
                       Register
                     </Link>
                   </NavItem>
@@ -81,8 +96,26 @@ const NavbarComponent = ({ history }) => {
                       to="/login"
                       style={isActive(history, "/login")}
                     >
+                      <FontAwesomeIcon
+                        className="mr-2"
+                        icon={faUser}
+                        size="lg"
+                        color="#feee00"
+                      />
                       Login
                     </Link>
+                  </NavItem>
+                  <NavItem>
+                    <UncontrolledDropdown>
+                      <DropdownToggle
+                        className="nav-link mt-1"
+                        style={{ backgroundColor: "black", border: "0px" }}
+                        caret
+                      ></DropdownToggle>
+                      <DropdownMenu style={{ backgroundColor: "#feee00" }}>
+                        <Login></Login>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
                   </NavItem>
                 </Fragment>
               )}
@@ -97,9 +130,12 @@ const NavbarComponent = ({ history }) => {
                   <NavItem>
                     <UncontrolledDropdown setActiveFromChild>
                       <DropdownToggle tag="a" className="nav-link" caret>
-                        <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          color="#feee00"
+                        ></FontAwesomeIcon>
                       </DropdownToggle>
-                      <DropdownMenu style={{ backgroundColor: "#F48176" }}>
+                      <DropdownMenu style={{ backgroundColor: "#feee00" }}>
                         <DropdownItem>
                           <Link
                             style={{

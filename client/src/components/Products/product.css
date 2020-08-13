@@ -1,20 +1,26 @@
 #productcard {
   transition: transform 0.3s; /* Animation */
+  border-radius: 8px;
+  border: 0px;
 }
 #productcard:hover {
   transform: scale(1.08);
 }
+.card-title{
+  padding: 20px !important;
+}
 #btn {
-  background-color: #f48176;
+  background-color: #3D2F49;
   transition: transform 0.2s;
   border: 0px;
+  color: white;
 }
 #h2 {
   font-size: 50px;
   text-align: center;
-  background-color: #5fcbbe;
+  background-color: #FEEE00;
   margin-top: 10px;
-  color: white;
+  color: black;
   padding: 20px;
   border-radius: 50px;
   transition: transform 0.2s;
@@ -34,10 +40,10 @@
   font-weight: 800;
   letter-spacing: 2px;
   padding: 2px;
-  color: white;
+  color: black;
 }
 #titlet {
-  background-color: #024763;
+  background-color: #FEEE00;
   position: relative;
   padding: 5px;
   padding-left: 1px;
@@ -45,11 +51,11 @@
   font-size: 20px;
   font-weight: 500;
   padding-left: 0px;
-  color: white;
+  color: black;
   margin-bottom: 0;
 }
 .desc {
-  color: white;
+  color: black;
   font-size: 20px;
   font-weight: 600;
 }

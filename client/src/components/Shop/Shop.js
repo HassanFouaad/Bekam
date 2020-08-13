@@ -1,10 +1,10 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import { ProductCardByFilter } from "../Products/ProductCardByFilter";
 import "semantic-ui-css/semantic.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "reactstrap";
-export const Shop = ({ filtered, clicked }) => {
+import { Button, Row } from "reactstrap";
+export const Shop = ({ filtered, clicked, loadMore }) => {
   return (
     <Fragment>
       <div style={{ minHeight: "100vh" }} className="container">
@@ -12,10 +12,11 @@ export const Shop = ({ filtered, clicked }) => {
           <Button
             onClick={clicked}
             style={{
-              background: "#033244",
+              background: "#FEEE00",
               border: "0px",
               marginLeft: "30px",
-    
+              color: "black",
+              paddingTop: "10px",
             }}
           >
             <FontAwesomeIcon icon={faBars} size="2x"></FontAwesomeIcon>
@@ -30,6 +31,7 @@ export const Shop = ({ filtered, clicked }) => {
             ></ProductCardByFilter>
           ))}
         </div>
+        <Row className="row justify-content-center">{loadMore()}</Row>
       </div>
     </Fragment>
   );

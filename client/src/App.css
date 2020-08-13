@@ -5,13 +5,14 @@ body {
   line-height: 1.6;
   background-color: #fff;
   color: #333;
+  padding-top: 70px;
 }
 
 .toastcontainer {
   height: 50px;
 }
 .navbar {
-  background: #033244;
+  background: black;
 }
 #dropdown {
   background: #86e3f1;
@@ -35,11 +36,15 @@ body {
   transition: 0.3s; /* Animation */
 }
 .nav-link:hover {
-  color: #2d98a8;
+  color: #feee00;
 }
-#regform {
-  margin-top: 15%;
-}
+
 .toaster {
   height: 50px;
+}
+
+#landing {
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

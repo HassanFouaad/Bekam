@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Form, FormGroup, Input } from "reactstrap";
+import { Form, FormGroup, Input, Button } from "reactstrap";
 import { ToastsContainer, ToastsStore } from "react-toasts";
 import { signUp } from "../../operations./operations";
+import "./auth.css";
 const Register = ({ history }) => {
   useEffect(() => {
     document.title = "Bekam - Sign Up";
@@ -43,6 +44,17 @@ const Register = ({ history }) => {
       <div className="container">
         <div className="row justify-content-center" id="regform">
           <Form onSubmit={(e) => onSubmit(e)}>
+            <FormGroup className="col-sm text-center">
+              <h2
+                style={{
+                  fontWeight: "700",
+                  fontSize: "50px",
+                  fontFamily: "Luckiest Guy",
+                }}
+              >
+                <span>Join Us</span>
+              </h2>
+            </FormGroup>
             <FormGroup className="col-sm">
               <Input
                 type="text"
@@ -89,7 +101,7 @@ const Register = ({ history }) => {
               ></Input>
             </FormGroup>
             <FormGroup className="col-sm">
-              <Input type="submit"></Input>
+              <Button id="subbtn">Join</Button>
             </FormGroup>
           </Form>
         </div>
