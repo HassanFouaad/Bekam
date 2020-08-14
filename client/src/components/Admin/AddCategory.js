@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { isAuthenticated } from "../../operations./operations";
+import { isAuthenticated } from "../../operations/operations";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { addCat } from "../../operations/catOperations";
 import {
