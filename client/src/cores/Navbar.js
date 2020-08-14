@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import {
   NavbarBrand,
   Nav,
@@ -25,14 +25,25 @@ import { Link, withRouter } from "react-router-dom";
 import { signOut, isAuthenticated } from "../operations/operations";
 import logo from "../img/logo.png";
 import { Login } from "../components/Auth/Login";
+import { totalItem, getCart } from "../operations/shoppingCart";
+
 const isActive = (history, path) => {
   if (history.location.pathname === path) {
     return { color: "#feee00" };
   }
 };
+
 const NavbarComponent = ({ history }) => {
   const [isOpen, setisOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [items, setItems] = useState(0);
+
+  useEffect(() => {
+    setItems(totalItem());
+  }, []);
+
+  const addD = () => {
+    setItems(items + 1);
+  };
 
   function toggleNav() {
     setisOpen(!isOpen);
@@ -157,11 +168,22 @@ const NavbarComponent = ({ history }) => {
             <br></br>
           </Collapse>
           <NavItem>
-            <FontAwesomeIcon
-              icon={faShoppingCart}
-              size="2x"
-              color="#feee00"
-            ></FontAwesomeIcon>
+            <Link>
+              <FontAwesomeIcon
+                icon={faShoppingCart}
+                size="2x"
+                color="#feee00"
+                onClick={addD}
+              ></FontAwesomeIcon>
+              <sup>
+                <small
+                  className="cart-badge"
+                  style={{ color: "#feee00", fontSize: "15px" }}
+                >
+                  {items}
+                </small>
+              </sup>
+            </Link>
           </NavItem>
         </Container>
       </Navbar>

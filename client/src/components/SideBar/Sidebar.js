@@ -59,6 +59,7 @@ const Sidebars = () => {
       })
       .catch((error) => console.log(error));
   };
+
   const loadMoreButton = () => {
     return (
       size > 0 &&
