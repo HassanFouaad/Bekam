@@ -3,12 +3,15 @@ import { ProductCardByFilter } from "../Products/ProductCardByFilter";
 import "semantic-ui-css/semantic.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { Button, Row } from "reactstrap";
+import { Button, Row, Jumbotron } from "reactstrap";
+
+import { Search } from "./Search";
 export const Shop = ({ filtered, clicked, loadMore }) => {
   return (
     <Fragment>
       <div style={{ minHeight: "100vh" }} className="container">
-        <div className="row">
+        <Search></Search>
+        <div className="row text-center">
           <Button
             onClick={clicked}
             style={{
@@ -18,6 +21,7 @@ export const Shop = ({ filtered, clicked, loadMore }) => {
               color: "black",
               paddingTop: "10px",
             }}
+            className="text-center"
           >
             <FontAwesomeIcon icon={faBars} size="2x"></FontAwesomeIcon>
             <h2>Filter</h2>

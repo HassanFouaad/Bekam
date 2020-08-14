@@ -11,7 +11,7 @@ import AdminDashboard from "./components/Admin/AdminDash";
 import Layouts from "./Layout";
 import AddCategory from "./components/Admin/AddCategory";
 import AddProduct from "./components/Admin/AddProduct";
-
+import SingleProduct from "./components/SingleProduct/SingleProduct";
 export default class MainRouter extends Component {
   render() {
     return (
@@ -43,6 +43,11 @@ export default class MainRouter extends Component {
               path="/create/product"
               component={AddProduct}
             ></AdminRoute>
+            <Route
+              exact
+              path="/product/:productId"
+              component={SingleProduct}
+            ></Route>
           </Switch>
         </BrowserRouter>
       </Fragment>

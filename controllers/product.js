@@ -36,10 +36,6 @@ exports.createProduct = (req, res) => {
         return res
           .status(400)
           .json({ error: "Image Size should be less than 2mb" });
-      } else if (files.photo.size < 100000) {
-        return res
-          .status(400)
-          .json({ error: "Image Size should be more than 100kb" });
       }
       console.log("Files Photo:" + files.photo);
       newProduct.photo.data = fs.readFileSync(files.photo.path);
@@ -110,10 +106,6 @@ exports.updateSingleProduct = (req, res) => {
         return res
           .status(400)
           .json({ error: "Image Size should be less than 2mb" });
-      } else if (files.photo.size < 100000) {
-        return res
-          .status(400)
-          .json({ error: "Image Size should be more than 100kb" });
       }
       console.log("Files Photo:" + files.photo);
       updatedProduct.photo.data = fs.readFileSync(files.photo.path);
@@ -249,4 +241,24 @@ exports.productPhoto = (req, res, next) => {
     return res.send(req.product.photo.data);
   }
   next();
+};
+
+exports.searchForProduct = (req, res) => {
+  ////Create Query object to hold search value and category value
+  const query = {};
+  //Assign QUERY VALUE
+  if (req.query.search) {
+    query.name = { $regex: req.query.search, $options: "i" };
+  }
+  //Assign Cat Value to query.category
+  if (req.query.category && req.query.category != "All") {
+    query.category = req.query.category;
+  }
+  //Finding the product based on query oject with two properties Sarch & Category
+  Product.find(query, (err, products) => {
+    if (err) {
+      return res.status(400).json({ error: errorHandler(err) });
+    }
+    res.json(products);
+  }).select("-photo");
 };

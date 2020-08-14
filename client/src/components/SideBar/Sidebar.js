@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Menu, Segment, Sidebar } from "semantic-ui-react";
+import { Menu, Segment, Sidebar, Sticky, Rail } from "semantic-ui-react";
 import { getCats, filteredProduct } from "../../operations/catOperations";
 import { Shop } from "../Shop/Shop";
 import { Button, Label, Input } from "reactstrap";
@@ -127,7 +127,7 @@ const Sidebars = () => {
   }
   return (
     <Fragment>
-      <Sidebar.Pushable as={Segment} className="mt-0">
+      <Sidebar.Pushable as={Segment} className="mt-0 ui left fixed">
         <Sidebar
           as={Menu}
           animation="overlay"
@@ -145,7 +145,10 @@ const Sidebars = () => {
           >
             <FontAwesomeIcon icon={faBars} size="2x"></FontAwesomeIcon>
           </Button>
-          <Menu.Item style={{ fontWeight: "700" }}>Categories</Menu.Item>
+
+          <Menu.Item style={{ fontWeight: "700" }} className="ui left fixed">
+            Categories
+          </Menu.Item>
           {cats.map((c, i) => (
             <Menu.Item key={i} className="text-left pl-5 text-sm-left">
               <input
@@ -186,7 +189,8 @@ const Sidebars = () => {
             </Menu.Item>
           ))}
         </Sidebar>
-        <Sidebar.Pusher dimmed={visible}>
+
+        <Sidebar.Pusher dimmed={visible} style={{ overflow: "scroll" }}>
           <Segment basic className="container">
             <Shop
               loadMore={loadMoreButton}

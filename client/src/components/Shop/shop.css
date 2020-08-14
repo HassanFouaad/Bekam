@@ -1,0 +1,35 @@
+#summberJum {
+  background-size: 100%;
+  height: 700px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-image: url(../../img/summer.jpg);
+  margin-bottom: -20px;
+}
+#h23 {
+  font-family: "Luckiest Guy";
+  text-align: center;
+  font-size: 100px;
+}
+@media screen and (max-width: 700px) {
+  #summberJum {
+    height: 200px;
+  }
+  #h23 {
+    font-size: 30px;
+  }
+}
+
+#searchform {
+  background-color: black;
+}
+#optkey {
+  background-color: #feee00;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+}
+
+#formform {
+}

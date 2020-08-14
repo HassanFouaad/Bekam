@@ -13,6 +13,7 @@ const {
   productsCategriesList,
   listBySearch,
   productPhoto,
+  searchForProduct,
 } = require("../controllers/product");
 router.param("userId", userById);
 const { productValidator, validate } = require("../validator/product");
@@ -31,6 +32,7 @@ router.delete("/product/:productId", deleteSingleProduct);
 router.put("/product/:productId", updateSingleProduct);
 
 router.get("/products", productList);
+router.get("/products/search", searchForProduct);
 router.get("/products/related/:productId", productListRealated);
 router.get("/products/categories", productsCategriesList);
 router.post("/products/by/search", listBySearch);

@@ -1,6 +1,6 @@
 import { API } from "../config";
 import axios from "axios";
-
+import queryString from "query-string";
 /* export const addCat = async (userId, token, name) => {
   const config = {
     headers: {
@@ -100,7 +100,7 @@ export const getProducts = async (sortBy) => {
   }).catch((error) => {
     throw error.response.data.error;
   });
-  console.log(res.data);
+
   return res.data;
 };
 export const filteredProduct = async (skip, limit, filters = {}) => {
@@ -114,7 +114,45 @@ export const filteredProduct = async (skip, limit, filters = {}) => {
   }).catch((error) => {
     throw error.response.data.error;
   });
-  console.log(res);
 
   return res.data;
+};
+
+export const searchList = async (params) => {
+  const query = queryString.stringify(params);
+  console.log("query", query);
+  const res = await axios({
+    method: "get",
+    url: `${API}/products/search?${query}`,
+
+    headers: { Accept: "application/json" },
+  }).catch((error) => {
+    throw error.response.data.error;
+  });
+
+  return res.data;
+};
+
+export const getSingleProduct = async (productId) => {
+  const res = await axios({
+    method: "get",
+    url: `${API}/product/${productId}`,
+    headers: { Accept: "application/json" },
+  }).catch((error) => {
+    throw error.response.data.error;
+  });
+
+  return res.data.product;
+};
+
+export const relatedProducts = async (productId) => {
+  const res = await axios({
+    method: "get",
+    url: `${API}/products/related/${productId}`,
+    headers: { Accept: "application/json" },
+  }).catch((error) => {
+    throw error.response.data.error;
+  });
+  console.log(res.data.products);
+  return res.data.products;
 };

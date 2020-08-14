@@ -3,7 +3,7 @@ import { isAuthenticated } from "../../operations/operations";
 
 import "./dash.css";
 import { Link } from "react-router-dom";
-const UserDashboard = () => {
+const UserDashboard = () => { 
   const {
     user: { firstname, lastname, email, role },
   } = isAuthenticated();

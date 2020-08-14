@@ -63,6 +63,7 @@ const AddProduct = () => {
   };
   useEffect(() => {
     init();
+    document.title = "Bekam - Create Category";
   }, []);
 
   const handleChange = (name) => (event) => {

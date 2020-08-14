@@ -40,7 +40,7 @@ const NavbarComponent = ({ history }) => {
 
   return (
     <Fragment>
-      <Navbar className="" id="navbar" expand="md" fixed="top">
+      <Navbar id="navbar" expand="md" fixed="top">
         <Container>
           <NavbarBrand className="navbar-brand ml-2" href="/">
             <img
@@ -49,13 +49,9 @@ const NavbarComponent = ({ history }) => {
               src={logo}
             ></img>
           </NavbarBrand>
-          <NavbarBrand className="ml-auto">
-            <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-          </NavbarBrand>
           <NavbarToggler expand="sm" onClick={toggleNav} className="ml-auto">
-            <FontAwesomeIcon icon={faBars} size="lg" color="#feee00" />
+            <FontAwesomeIcon icon={faBars} size="3x" color="#feee00" />
           </NavbarToggler>
-
           <Collapse navbar isOpen={isOpen}>
             <Nav navbar className="ml-auto">
               <NavItem>
@@ -158,7 +154,15 @@ const NavbarComponent = ({ history }) => {
                 </Fragment>
               )}
             </Nav>
+            <br></br>
           </Collapse>
+          <NavItem>
+            <FontAwesomeIcon
+              icon={faShoppingCart}
+              size="2x"
+              color="#feee00"
+            ></FontAwesomeIcon>
+          </NavItem>
         </Container>
       </Navbar>
     </Fragment>

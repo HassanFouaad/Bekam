@@ -62,9 +62,9 @@ export const DisplayProducts = () => {
     <Fragment>
       {loading && (
         <Loader
-          className="text-center"
+          className="text-center mb-5"
           type="Oval"
-          color="#F48176"
+          color="#FEEE00"
           height={100}
           width={100}
           timeout={5000}
@@ -93,9 +93,9 @@ export const DisplayProducts = () => {
       </Row>
       {loading && (
         <Loader
-          className="text-center"
+          className="text-center mt-2 mb-2"
           type="Oval"
-          color="#F48176"
+          color="#FEEE00"
           height={100}
           width={100}
           timeout={5000}
@@ -113,10 +113,7 @@ export const DisplayProducts = () => {
       </Row>
       <Row className="row justify-content-center text-center mt-5">
         {productsByArrival.map((p, i) => (
-          <ProductCardByArrival
-            key={i}
-            product={p}
-          ></ProductCardByArrival>
+          <ProductCardByArrival key={i} product={p}></ProductCardByArrival>
         ))}
       </Row>
     </Fragment>

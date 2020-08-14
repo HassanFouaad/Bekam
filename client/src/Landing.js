@@ -4,8 +4,9 @@ import { DisplayProducts } from "./components/Products/DisplayProducts";
 import "./Landing.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Jumbotron, Container, Button, ButtonGroup } from "reactstrap";
+import { Jumbotron, Container, Button, ButtonGroup, Row } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Search } from "./components/Shop/Search";
 export default class Landing extends Component {
   componentDidMount() {
     document.title = "Bekam - Online Trade Handler";
@@ -14,6 +15,7 @@ export default class Landing extends Component {
       easing: "ease-in-out-back",
     });
     AOS.refresh();
+    document.title = "Bekam - Online Trade Handler";
   }
   render() {
     return (
@@ -57,6 +59,7 @@ export default class Landing extends Component {
             </Container>
           </Jumbotron>
           <Container className="justify-content-center">
+            <Search></Search>
             <DisplayProducts></DisplayProducts>
           </Container>
         </div>

@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { isAuthenticated } from "../../operations/operations";
 import "../USERS/dash.css";
 import { Link } from "react-router-dom";
+import { Container, Collapse } from "reactstrap";
 const AdminDashboard = () => {
   const {
     user: { firstname, lastname, email, role },
@@ -11,10 +12,10 @@ const AdminDashboard = () => {
   }, []);
   const AdminLinks = () => {
     return (
-      <div className="bg-light text-center" style={{ height: "100%" }}>
+      <div className="col text-center " style={{ height: "100%" }}>
         <h4
           className="card-header"
-          style={{ background: "#F48176", color: "white" }}
+          style={{ background: "#feee00", color: "black" }}
         >
           ShortCuts
         </h4>
@@ -30,17 +31,22 @@ const AdminDashboard = () => {
             </Link>
           </li>
         </ul>
+        <li className="list-group-item">
+          <Link className="links" to="/home">
+            Shop
+          </Link>
+        </li>
       </div>
     );
   };
 
   const AdminInfo = () => {
     return (
-      <Fragment>
-        <div className="card mb-5">
+      <>
+        <div className="card">
           <h3
             className="card-header"
-            style={{ background: "#F48176", color: "white" }}
+            style={{ background: "#feee00", color: "black" }}
           >
             Informations
           </h3>
@@ -54,18 +60,18 @@ const AdminDashboard = () => {
             <li className="list-group-item">{email}</li>
           </ul>
         </div>
-      </Fragment>
+      </>
     );
   };
 
   return (
-    <Fragment>
-      <div className="d-flex">
+    <Container className="mt-5">
+      <div className="row">
         <div style={{ width: "250px" }}>{AdminLinks()}</div>
 
-        <div className="container-fluid">{AdminInfo()}</div>
+        <div className="col-8">{AdminInfo()}</div>
       </div>
-    </Fragment>
+    </Container>
   );
 };
 
