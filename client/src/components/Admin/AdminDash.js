@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { isAuthenticated } from "../../operations./operations";
+import { isAuthenticated } from "../../operations/operations";
 import "../USERS/dash.css";
 import { Link } from "react-router-dom";
 const AdminDashboard = () => {

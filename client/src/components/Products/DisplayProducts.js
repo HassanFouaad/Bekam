@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { getProducts } from "../../operations./catOperations";
+import { getProducts } from "../../operations/catOperations";
 import { ToastsStore } from "react-toasts";
 import { Carousel } from "react-responsive-carousel";
 import { ProductCardBySold } from "./productCardBySold";

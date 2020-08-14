@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { isAuthenticated } from "./operations./operations";
+import { isAuthenticated } from "./operations/operations";
 import { DisplayProducts } from "./components/Products/DisplayProducts";
 import "./Landing.css";
 import AOS from "aos";

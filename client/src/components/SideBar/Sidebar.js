@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Menu, Segment, Sidebar } from "semantic-ui-react";
-import { getCats, filteredProduct } from "../../operations./catOperations";
+import { getCats, filteredProduct } from "../../operations/catOperations";
 import { Shop } from "../Shop/Shop";
 import { Button, Label, Input } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

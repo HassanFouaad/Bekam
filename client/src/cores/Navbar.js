@@ -22,7 +22,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, withRouter } from "react-router-dom";
-import { signOut, isAuthenticated } from "../operations./operations";
+import { signOut, isAuthenticated } from "../operations/operations";
 import logo from "../img/logo.png";
 import { Login } from "../components/Auth/Login";
 const isActive = (history, path) => {

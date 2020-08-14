@@ -5,7 +5,7 @@ import {
   ToastsStore,
   ToastsContainerPosition,
 } from "react-toasts";
-import { signIn } from "../../operations./operations";
+import { signIn } from "../../operations/operations";
 
 export const Login = ({ history }) => {
   useEffect(() => {

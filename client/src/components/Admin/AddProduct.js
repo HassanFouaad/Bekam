@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { isAuthenticated } from "../../operations./operations";
 import { Form, FormGroup, Label, Input, Container, Row } from "reactstrap";
-import { addProduct, getCats } from "../../operations./catOperations";
+import { addProduct, getCats } from "../../operations/catOperations";
 import {
   ToastsStore,
   ToastsContainerPosition,

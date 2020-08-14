@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { isAuthenticated } from "../../operations./operations";
+import { isAuthenticated } from "../../operations/operations";
 const AdminRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}

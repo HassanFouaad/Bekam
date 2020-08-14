@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import { ToastsContainer, ToastsStore } from "react-toasts";
-import { signUp } from "../../operations./operations";
+import { signUp } from "../../operations/operations";
 import "./auth.css";
 const Register = ({ history }) => {
   useEffect(() => {
