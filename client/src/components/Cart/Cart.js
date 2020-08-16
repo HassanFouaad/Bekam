@@ -119,11 +119,11 @@ export const Cart = () => {
                   {items.length > 0 ? (
                     <Fragment>
                       <form>
-                        <div className="form-gorup">
+                        <div className="form-gorup text-center">
                           <label className="text-muted">Delivery Address</label>
                           <textarea
                             onChange={handleAddress}
-                            className="form-control"
+                            className="form-control mt-5"
                             value={data.clientAddress}
                           ></textarea>
                         </div>
