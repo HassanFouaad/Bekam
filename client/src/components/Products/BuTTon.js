@@ -7,15 +7,19 @@ import {
   ToastsContainerPosition,
 } from "react-toasts";
 
-export const BuTTon = ({ product }) => {
-  const addToCart = () => {
-    addItem(product, () => {
-      ToastsStore.success(`Added ${product.name} to Cart`);
-    });
-  };
+export const BuTTon = ({ product, setRun = (f) => f, run = undefined }) => {
   return (
     <Fragment>
-      <Button className="mt-2 mb-1 text-center" id="btn" onClick={addToCart}>
+      <Button
+        className="mt-2 mb-1 text-center"
+        id="btn"
+        onClick={() => {
+          addItem(product, () => {
+            ToastsStore.success(`Added ${product.name} to Cart`);
+          });
+          setRun(!run);
+        }}
+      >
         Add to Cart
       </Button>
       <ToastsContainer

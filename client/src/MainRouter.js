@@ -12,6 +12,7 @@ import Layouts from "./Layout";
 import AddCategory from "./components/Admin/AddCategory";
 import AddProduct from "./components/Admin/AddProduct";
 import SingleProduct from "./components/SingleProduct/SingleProduct";
+import { Cart } from "./components/Cart/Cart";
 export default class MainRouter extends Component {
   render() {
     return (
@@ -28,6 +29,7 @@ export default class MainRouter extends Component {
               path="/user/dashboard"
               component={UserDashboard}
             ></PrivateRoute>
+            <Route exact path="/user/cart" component={Cart}></Route>
             <AdminRoute
               exact
               path="/admin/dashboard"

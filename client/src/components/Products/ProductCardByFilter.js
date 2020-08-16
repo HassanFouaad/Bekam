@@ -16,6 +16,7 @@ import {
 } from "reactstrap";
 import "./product.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { BuTTon } from "./BuTTon";
 
 import { API } from "../../config";
 export const ProductCardByFilter = ({ product }) => {
@@ -58,13 +59,7 @@ export const ProductCardByFilter = ({ product }) => {
               </Button>
             </Link>
 
-            <Button
-              className="mt-2 mb-1 text-center"
-              id="btn"
-              onClick={addToCart}
-            >
-              Add to Cart
-            </Button>
+            <BuTTon product={product}></BuTTon>
           </div>
         </CardBody>
       </Card>

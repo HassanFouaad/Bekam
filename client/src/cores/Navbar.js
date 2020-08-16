@@ -25,25 +25,22 @@ import { Link, withRouter } from "react-router-dom";
 import { signOut, isAuthenticated } from "../operations/operations";
 import logo from "../img/logo.png";
 import { Login } from "../components/Auth/Login";
-import { totalItem, getCart } from "../operations/shoppingCart";
+import { getCart } from "../operations/shoppingCart";
+import { BuTTon } from "../components/Products/BuTTon";
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) {
     return { color: "#feee00" };
   }
 };
-
 const NavbarComponent = ({ history }) => {
   const [isOpen, setisOpen] = useState(false);
-  const [items, setItems] = useState(0);
+  const [items, setItems] = useState([]);
+  const [run, setRun] = useState(false);
 
   useEffect(() => {
-    setItems(totalItem());
-  }, []);
-
-  const addD = () => {
-    setItems(items + 1);
-  };
+    setItems(getCart());
+  }, [run]);
 
   function toggleNav() {
     setisOpen(!isOpen);
@@ -51,6 +48,9 @@ const NavbarComponent = ({ history }) => {
 
   return (
     <Fragment>
+      <div style={{ display: "none" }}>
+        <BuTTon setRun={setRun} run={run}></BuTTon>
+      </div>
       <Navbar id="navbar" expand="md" fixed="top">
         <Container>
           <NavbarBrand className="navbar-brand ml-2" href="/">
@@ -58,7 +58,7 @@ const NavbarComponent = ({ history }) => {
               className="img img-responsive"
               style={{ height: "50px", padding: "0px" }}
               src={logo}
-            ></img>
+            ></img>{" "}
           </NavbarBrand>
           <NavbarToggler expand="sm" onClick={toggleNav} className="ml-auto">
             <FontAwesomeIcon icon={faBars} size="3x" color="#feee00" />
@@ -168,19 +168,18 @@ const NavbarComponent = ({ history }) => {
             <br></br>
           </Collapse>
           <NavItem>
-            <Link>
+            <Link to="/user/cart">
               <FontAwesomeIcon
                 icon={faShoppingCart}
                 size="2x"
                 color="#feee00"
-                onClick={addD}
               ></FontAwesomeIcon>
               <sup>
                 <small
                   className="cart-badge"
                   style={{ color: "#feee00", fontSize: "15px" }}
                 >
-                  {items}
+                  {items.length}
                 </small>
               </sup>
             </Link>

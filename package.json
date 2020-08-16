@@ -25,6 +25,9 @@
     "mongoose": "^5.9.28",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
+    "react-cart-components": "^2.1.0",
+    "react-icons": "^3.10.0",
+    "react-shopping-cart": "^1.9.4",
     "uuid": "^8.3.0"
   }
 }
