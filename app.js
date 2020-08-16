@@ -11,7 +11,6 @@ const productRouter = require("./routes/product");
 const categoryRouter = require("./routes/category");
 const orderRouter = require("./routes/order");
 const app = express();
-const path = require("path");
 
 //Database Connection
 mongoose
