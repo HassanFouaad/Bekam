@@ -262,3 +262,23 @@ exports.searchForProduct = (req, res) => {
     res.json(products);
   }).select("-photo");
 };
+
+////////////////////Product Decrease Quantity
+exports.decreaseOrderQuantity = (req, res, next) => {
+  let bulkOps = req.body.order.products.map((item) => {
+    return {
+      updateOne: {
+        filter: { _id: item._id },
+        update: { $inc: { quantity: -item.count, sold: +item.count } },
+      },
+    };
+  });
+  Product.bulkWrite(bulkOps, {}, (err, product) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ error: "Server Error, Couldn't Update Porduct" });
+    }
+    next();
+  });
+};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { getCart } from "../../operations/shoppingCart";
+import { createOrder } from "../../operations/orderOperations";
 import { Container } from "reactstrap";
 import "./cart.css";
 import CheckOut from "./CheckOut";
@@ -9,6 +10,9 @@ import { isAuthenticated } from "../../operations/operations";
 export const Cart = () => {
   const [items, setItems] = useState([]);
   const [run, setRun] = useState(false);
+  const [data, setData] = useState({
+    clientAddress: "",
+  });
   useEffect(() => {
     setItems(getCart());
   }, [run]);
@@ -35,7 +39,27 @@ export const Cart = () => {
       </h2>
     );
   };
+  const handleClick = (e) => {
+    e.preventDefault();
+    const userId = isAuthenticated().user._id;
+    const token = isAuthenticated().token;
+    const createOrderData = {
+      products: items,
+      amount: getTotal(),
+      address: data.clientAddress,
+    };
+    createOrder(userId, token, createOrderData);
+  };
 
+  const getTotal = () => {
+    return items.reduce((currentValue, nextValue) => {
+      return currentValue + nextValue.count * nextValue.price;
+    }, 0);
+  };
+
+  const handleAddress = (e) => {
+    setData({ ...data, clientAddress: e.target.value });
+  };
   return (
     <Fragment>
       <Container>
@@ -73,20 +97,36 @@ export const Cart = () => {
                   <i className="fa fa-angle-left"></i> Continue Shopping
                 </Link>
               </td>
-              <td colspan="2" className="hidden-xs"></td>
+              <td colSpan="2" className="hidden-xs"></td>
               <td className="hidden-xs text-center">
-                <CheckOut products={items}></CheckOut>
+                <CheckOut getTotal={getTotal()}></CheckOut>
               </td>
 
               {isAuthenticated() ? (
                 <td className="align-self-center text-center">
-                  <a
-                    href="#"
-                    className="btn btn-success btn-block"
-                    style={{ background: "black", color: "#FEEE00" }}
-                  >
-                    Checkout <i className="fa fa-angle-right"></i>
-                  </a>
+                  {items.length > 0 ? (
+                    <Fragment>
+                      <form>
+                        <div className="form-gorup">
+                          <label className="text-muted">Delivery Address</label>
+                          <textarea
+                            onChange={handleAddress}
+                            className="form-control"
+                            value={data.clientAddress}
+                          ></textarea>
+                        </div>
+                        <Link
+                          onClick={handleClick}
+                          className="btn btn-success btn-block"
+                          style={{ background: "black", color: "#FEEE00" }}
+                        >
+                          Checkout <i className="fa fa-angle-right"></i>
+                        </Link>
+                      </form>
+                    </Fragment>
+                  ) : (
+                    <Fragment></Fragment>
+                  )}
                 </td>
               ) : (
                 <td className="align-self-center text-center">

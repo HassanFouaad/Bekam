@@ -51,3 +51,29 @@ exports.deleteProfile = (req, res) => {
     res.status(200).json({ message: "Deleted Successfully" });
   });
 };
+
+exports.userOrderHistory = (req, res, next) => {
+  let history = [];
+  req.body.order.products.forEach((item) => {
+    history.push({
+      _id: item._id,
+      name: item.name,
+      description: item.description,
+      category: item.category,
+      quantity: item.count,
+      amount: req.body.order.amout,
+    });
+  });
+  User.findByIdAndUpdate(
+    { _id: req.profile._id },
+    { $push: { history: history } },
+    { new: true },
+    (err, data) => {
+      if (err) {
+        res.status(500).json({ error: "Couldn't update use Purchase history" });
+      }
+      console.log(data);
+      next();
+    }
+  );
+};

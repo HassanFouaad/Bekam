@@ -13,6 +13,7 @@ import AddCategory from "./components/Admin/AddCategory";
 import AddProduct from "./components/Admin/AddProduct";
 import SingleProduct from "./components/SingleProduct/SingleProduct";
 import { Cart } from "./components/Cart/Cart";
+import CheckOut from "./components/Cart/CheckOut";
 export default class MainRouter extends Component {
   render() {
     return (
@@ -28,6 +29,11 @@ export default class MainRouter extends Component {
               exact
               path="/user/dashboard"
               component={UserDashboard}
+            ></PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/checkout"
+              component={CheckOut}
             ></PrivateRoute>
             <Route exact path="/user/cart" component={Cart}></Route>
             <AdminRoute
