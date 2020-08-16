@@ -48,7 +48,7 @@ export const Cart = () => {
       amount: getTotal(),
       address: data.clientAddress,
     };
-    createOrder(userId, token, createOrderData);
+    createOrder(userId, token, createOrderData).then()
   };
 
   const getTotal = () => {

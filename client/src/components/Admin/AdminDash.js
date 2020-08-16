@@ -3,6 +3,7 @@ import { isAuthenticated } from "../../operations/operations";
 import "../USERS/dash.css";
 import { Link } from "react-router-dom";
 import { Container, Collapse } from "reactstrap";
+import Orders from "./Orders";
 const AdminDashboard = () => {
   const {
     user: { firstname, lastname, email, role },
@@ -71,6 +72,8 @@ const AdminDashboard = () => {
 
         <div className="col-8">{AdminInfo()}</div>
       </div>
+
+      <Orders></Orders>
     </Container>
   );
 };

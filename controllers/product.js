@@ -3,7 +3,8 @@ const formidable = require("formidable");
 const fs = require("fs");
 const _ = require("lodash");
 const { errorHandler } = require("../helpers/dbErrorHandler");
-const Category = require("../models/category");
+const { Order } = require("../models/Order");
+const { json } = require("body-parser");
 /* ------------------------------------ Creating Products */
 exports.createProduct = (req, res) => {
   let form = new formidable.IncomingForm();
@@ -263,8 +264,21 @@ exports.searchForProduct = (req, res) => {
   }).select("-photo");
 };
 
-////////////////////Product Decrease Quantity
-exports.decreaseOrderQuantity = (req, res, next) => {
+//////    //////////////Product Decrease Quantity
+exports.decreaseOrderQuantity = (req, res) => {
+  console.log(req.body.order.status);
+  Order.updateOne(
+    { _id: req.body.order._id },
+    { $set: { status: "Delivered" } },
+    (err, updatedProduct) => {
+      if (err) {
+        console.log(error);
+      }
+      console.log(updatedProduct);
+      res.json(updatedProduct);
+    }
+  );
+
   let bulkOps = req.body.order.products.map((item) => {
     return {
       updateOne: {
@@ -279,6 +293,5 @@ exports.decreaseOrderQuantity = (req, res, next) => {
         .status(500)
         .json({ error: "Server Error, Couldn't Update Porduct" });
     }
-    next();
   });
 };
