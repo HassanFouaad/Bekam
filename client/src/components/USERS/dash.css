@@ -1,9 +1,18 @@
 .links {
-    font-weight: 500;
-    color: #024763;
+  font-weight: 500;
+  color: #024763;
 }
 
-.links:hover{
-    color: #F48176;
-    text-decoration: none;
+.links:hover {
+  color: #f48176;
+  text-decoration: none;
+}
+
+#statusIcon {
+  max-height: 50px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+#status {
+  font-size: 15px;
 }

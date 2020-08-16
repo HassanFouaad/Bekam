@@ -54,3 +54,20 @@ export const isAuthenticated = () => {
     return false;
   }
 };
+
+export const getPurchaseHistory = (userId, token) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const res = axios.get(`${API}/orders/by/user/${userId}`, config);
+    console.log(res)
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -11,6 +11,7 @@ const productRouter = require("./routes/product");
 const categoryRouter = require("./routes/category");
 const orderRouter = require("./routes/order");
 const app = express();
+const path = require("path");
 
 //Database Connection
 mongoose
@@ -28,13 +29,22 @@ app.use(cookieParser());
 app.use(cors());
 
 //App
-
+const path = require("path");
 //Routes
 app.use("/api", userRouter);
 app.use("/api", authRouter);
 app.use("/api", categoryRouter);
 app.use("/api", productRouter);
 app.use("/api", orderRouter);
+
+/////SERV STATIC
+if (process.env.NODE_ENV === "production") {
+  ///set static folder
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const port = process.env.PORT || 8000;
 app.listen(port, (err, response) => {

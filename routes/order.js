@@ -9,7 +9,7 @@ const {
   orderById,
   updateStatus,
 } = require("../controllers/order");
-const { userOrderHistory } = require("../controllers/user");
+const { userOrderHistory, purchasesByUser } = require("../controllers/user");
 const { decreaseOrderQuantity } = require("../controllers/product");
 
 router.post(
@@ -42,6 +42,7 @@ router.get(
   isAdmin,
   getStatusValue
 );
+router.get("/orders/by/user/:userId", purchasesByUser);
 
 router.param("userId", userById);
 router.param("orderId", orderById);

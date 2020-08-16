@@ -40,12 +40,14 @@ export default function Orders() {
 
   const handleStatusChange = (e, orderID, order) => {
     const { user, token } = isAuthenticated();
-    updateOrderStatus(user._id, token, orderID, e.target.value, order);
-    shippedOrder(user._id, token, orderID, e.target.value, order)
+    updateOrderStatus(user._id, token, orderID, e.target.value, order)
       .then((data) => {
         loadOrders();
       })
       .catch((err) => console.log(err));
+    if (e.target.value === "Delivered") {
+      shippedOrder(user._id, token, orderID, e.target.value, order);
+    }
   };
 
   const handleShippedOrder = (order) => {

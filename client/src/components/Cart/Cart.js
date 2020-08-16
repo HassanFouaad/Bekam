@@ -1,9 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { getCart } from "../../operations/shoppingCart";
+import { getCart, emptyCart } from "../../operations/shoppingCart";
 import { createOrder } from "../../operations/orderOperations";
-import { Container } from "reactstrap";
+import { Container, Toast } from "reactstrap";
 import "./cart.css";
 import CheckOut from "./CheckOut";
+import {
+  ToastsContainer,
+  ToastsContainerPosition,
+  ToastsStore,
+} from "react-toasts";
 import { Link } from "react-router-dom";
 import { ShowItems } from "./cartItems";
 import { isAuthenticated } from "../../operations/operations";
@@ -48,7 +53,14 @@ export const Cart = () => {
       amount: getTotal(),
       address: data.clientAddress,
     };
-    createOrder(userId, token, createOrderData).then()
+    createOrder(userId, token, createOrderData);
+    emptyCart(() => {
+      console.log("Created Success");
+      setRun(!run);
+      ToastsStore.success(
+        "Successfully Placed an order, We will call you as soon as possible"
+      );
+    });
   };
 
   const getTotal = () => {
@@ -143,6 +155,10 @@ export const Cart = () => {
           </tfoot>
         </table>
       </Container>
+      <ToastsContainer
+        store={ToastsStore}
+        position={ToastsContainerPosition.TOP_LEFT}
+      />
     </Fragment>
   );
 };
