@@ -9,13 +9,11 @@ import { Link } from "react-router-dom";
 import { Search } from "./components/Shop/Search";
 export default class Landing extends Component {
   componentDidMount() {
-    document.title = "Bekam - Online Trade Handler";
     AOS.init({
       duration: 800,
       easing: "ease-in-out-back",
     });
     AOS.refresh();
-    document.title = "Bekam - Online Trade Handler";
   }
   render() {
     return (
