@@ -3,24 +3,6 @@ Bekam is an online E-Store which is created by MONGODG, EXPRESSJS, REACTJS and N
 
 note: The Project is still under construction 
 
-CONTACT
-
-Hassan Fouad
-KFS, Egypt
-MailMe
-+2 01202021670
-View Full Resume
-CERTIFICATES
-REACT JS - REDUX FRONT END DEVELOPMENT
-
-MONGODB EXPRESS NODE SERVER SIDE DEVELOPMENT
-
-UI AND FRONT END FRAMEWORKS DEVELOPMENT
-
-PERSONAL APPS
-Mewoers
-Bekam - Online Shopping / Trading Ecommerce App
-Git Repo    Visit
 Bekam is a MERN Stack Online Shopping / Trading Ecommerce App that includes
 
 Full Athentication "Signup - Signin - Logout" System.
